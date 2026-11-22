@@ -1,19 +1,5 @@
-// ---- Kişiselleştirme ----
-// Linke ?isim=Zeynep eklersen sayfa ona hitap eder. İsim yoksa genel kalır.
-// Örnek: https://kullanici.github.io/kahve-mi-yemek-mi/?isim=Zeynep
 const PHONE_NUMBER = "905372548545"; // WhatsApp mesajının gideceği numara
 const SENDER_NAME = "Ateş";
-
-const params = new URLSearchParams(window.location.search);
-const rawName = (params.get("isim") || params.get("name") || "").trim().slice(0, 30);
-const herName = rawName ? rawName.charAt(0).toLocaleUpperCase("tr-TR") + rawName.slice(1) : "";
-
-if (herName) {
-    document.title = `${herName}, sana küçük bir sorum var ☕🍝`;
-    document.getElementById("greeting").innerText = `Selam ${herName} 👋`;
-    document.getElementById("yay-text").innerText = `Harika, ${herName}! 🎉`;
-    document.getElementById("done-eyebrow").innerText = `Tamamdır, ${herName} ✨`;
-}
 
 const noButton = document.getElementById("no-btn");
 const yesButton = document.getElementById("yes-btn");
@@ -47,10 +33,21 @@ function overlaps(a, b, gap) {
              a.bottom + gap < b.top || a.top - gap > b.bottom);
 }
 
-const noHint = document.getElementById("no-hint");
+// Uyarılar ekranın ortasında pop-up olarak çıkar
+const popup = document.getElementById("no-popup");
+const popupText = document.getElementById("no-popup-text");
+let popupTimer;
+function showPopup(text) {
+    popupText.innerText = text;
+    popup.classList.remove("show");
+    void popup.offsetWidth; // animasyonu her seferinde baştan oynat
+    popup.classList.add("show");
+    clearTimeout(popupTimer);
+    popupTimer = setTimeout(() => popup.classList.remove("show"), 1800);
+}
 const noMessages = [
     "Hmm, o buton biraz utangaç 🙈",
-    herName ? `${herName}, emin misin? 🤔` : "Emin misin? 🤔",
+    "Emin misin? 🤔",
     "Kahve de olur ama ☕",
     "Bir daha düşün bence 😄",
     "Tamam, sadece bir kahve. Söz 🤞",
@@ -89,7 +86,7 @@ function moveNoButton() {
     noButton.style.top = y + "px";
 
     noTries++;
-    noHint.innerText = noMessages[Math.min(noTries - 1, noMessages.length - 1)];
+    showPopup(noMessages[Math.min(noTries - 1, noMessages.length - 1)]);
 }
 
 noButton.addEventListener("mouseenter", moveNoButton);
@@ -207,8 +204,7 @@ confirmBtn.addEventListener("click", () => {
     const what = selectedPlan === "kahve"
         ? "kahve içiyoruz"
         : `${selectedFood.toLowerCase()} yiyoruz`;
-    const signature = herName ? ` ${herName}` : "";
-    const message = `Selam ${SENDER_NAME}! Davetini gördüm 😊 ${what}, ${selectedDate} saat ${selectedTime}${timeSuffix[selectedTime] || "'da"} görüşüyoruz.${signature}`;
+    const message = `Selam ${SENDER_NAME}! Davetini gördüm 😊 ${what}, ${selectedDate} saat ${selectedTime}${timeSuffix[selectedTime] || "'da"} görüşüyoruz.`;
     const whatsappLink = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(message)}`;
 
     const summaryWhat = selectedPlan === "kahve"
