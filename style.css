@@ -1,0 +1,382 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    background-image: url('background.jpeg');
+    background-repeat: repeat;
+    background-size: 250px;
+
+    min-height: 100vh;
+    min-height: 100dvh; /* mobil tarayıcı adres çubuğunu hesaba katar */
+    position: relative; /* "made by Ates" sayfanın altına yapışsın */
+    margin: 0;
+    padding: 24px 16px 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden; /* kaçan buton yatay kaydırma yaratmasın */
+    overflow-y: auto;   /* uzun ekranlar telefonda kaydırılabilsin */
+    -webkit-tap-highlight-color: transparent;
+}
+
+.container {
+    background-color: white;
+    padding: clamp(20px, 5vw, 40px);
+    border-radius: 12px;
+    border: 4px solid #111;
+    box-shadow: 12px 12px 0px rgba(255, 77, 109, 0.8);
+    text-align: center;
+    width: 100%;
+    max-width: 640px;
+}
+
+#cat-gif {
+    width: 250px;
+    max-width: 100%;
+    height: auto;
+    border: 4px solid #111;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+h1 {
+    font-family: 'Poppins', sans-serif;
+    color: #ff4d6d;
+    font-size: clamp(2rem, 8vw, 3rem);
+    line-height: 1.15;
+    font-weight: 700;
+    margin-top: 0;
+    animation: heartBeat 2.5s infinite;
+}
+
+button {
+    font-size: 1.3rem;
+    padding: 12px 30px;
+    margin: 10px;
+    border: 3px solid #111;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    color: #111;
+    touch-action: manipulation; /* çift dokunma zoom gecikmesini kaldırır */
+    transition: transform 0.15s, box-shadow 0.15s, background-color 0.15s;
+}
+
+#yes-btn {
+    background-color: #ff4d6d;
+    color: white;
+    box-shadow: 6px 6px 0px #111;
+}
+
+#yes-btn:active {
+    transform: translate(4px, 4px);
+    box-shadow: 2px 2px 0px #111;
+}
+
+#no-btn {
+    background-color: #f8f9fa;
+    color: #111;
+    box-shadow: 6px 6px 0px #111;
+    z-index: 10;
+    transition: left 0.4s ease-out, top 0.4s ease-out, transform 0.15s, box-shadow 0.15s;
+}
+
+/* Kaçmaya başladığında ekrana sabitlenir, kaydırmada da görünür kalır */
+#no-btn.runaway {
+    position: fixed;
+    margin: 0;
+}
+
+@keyframes heartBeat {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+    100% { transform: scale(1); }
+}
+
+h3 {
+    font-family: 'Poppins', sans-serif;
+    color: #ff4d6d;
+    font-size: 0.7rem;
+    font-weight: 400;
+    text-align: center;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    white-space: nowrap;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 2px 10px;
+    border-radius: 999px;
+}
+
+#detail-screen {
+    display: none;
+}
+
+h2 {
+    font-family: 'Poppins', sans-serif;
+    color: #ff4d6d;
+    font-size: clamp(1.6rem, 6.5vw, 2.5rem);
+    line-height: 1.2;
+    font-weight: 700;
+    margin-top: 0;
+}
+
+.food-options {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.food-card {
+    background-color: white;
+    border: 3px solid #111;
+    border-radius: 12px;
+    padding: 15px;
+    margin: 0;
+    width: 120px;
+    box-shadow: 6px 6px 0px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.food-card img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+.food-card p {
+    margin: 0;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #111;
+}
+
+.food-card:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px #ff4d6d;
+}
+
+#calendar-screen,
+#done-screen {
+    display: none;
+}
+
+.eyebrow {
+    margin: 0 0 6px;
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: #111;
+}
+
+.subtitle {
+    margin: -6px auto 18px;
+    max-width: 420px;
+    color: #555;
+    font-size: 1rem;
+}
+
+.hint {
+    min-height: 1.4em;
+    margin: 8px 0 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #ff4d6d;
+}
+
+.hint a {
+    color: #ff4d6d;
+}
+
+.date-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.2;
+}
+
+.day-name {
+    font-size: 0.75rem;
+    font-weight: 400;
+    opacity: 0.7;
+}
+
+.option-group {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.time-card {
+    background-color: white;
+    border: 3px solid #111;
+    border-radius: 8px;
+    padding: 10px 15px;
+    margin: 0;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+    transition: all 0.2s;
+}
+
+.time-card.selected-time {
+    background-color: #ff4d6d;
+    color: white;
+    box-shadow: 2px 2px 0px #111;
+    transform: translate(2px, 2px);
+}
+
+#confirm-btn {
+    background-color: #111;
+    color: white;
+    width: 100%;
+    margin: 15px 0 0;
+    box-shadow: 6px 6px 0px #ff4d6d;
+}
+
+/* Hover efektleri sadece fareli cihazlarda: telefonda dokunduktan sonra "takılı" kalmasınlar */
+@media (hover: hover) and (pointer: fine) {
+    #yes-btn:hover {
+        transform: translate(-3px, -3px);
+        box-shadow: 9px 9px 0px #111;
+    }
+
+    .food-card:hover {
+        transform: translate(-4px, -4px);
+        box-shadow: 10px 10px 0px #ff4d6d;
+    }
+
+    .time-card:not(.selected-time):hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 6px 6px 0px #ff4d6d;
+    }
+
+    #confirm-btn:hover {
+        background-color: #ff4d6d;
+        box-shadow: 6px 6px 0px #111;
+    }
+}
+
+/* ---------- Telefon ---------- */
+@media (max-width: 600px) {
+    body {
+        background-size: 180px;
+        padding: 16px 14px 44px;
+    }
+
+    .container {
+        box-shadow: 8px 8px 0px rgba(255, 77, 109, 0.8);
+        border-width: 3px;
+    }
+
+    #cat-gif {
+        width: 200px;
+    }
+
+    button {
+        font-size: 1.1rem;
+        padding: 12px 24px;
+        margin: 8px;
+    }
+
+    /* Yemekler 2x2 ızgara */
+    .food-options {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+    }
+
+    .food-card {
+        width: 100%;
+        padding: 12px;
+    }
+
+    .food-card img {
+        width: 64px;
+        height: 64px;
+    }
+
+    /* Tarih ve saatler eşit ızgara, rahat dokunma alanı */
+    #date-options {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    #time-options {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+    }
+
+    .time-card {
+        font-size: 1rem;
+        padding: 12px 6px;
+        min-height: 48px;
+    }
+}
+
+@media (max-width: 360px) {
+    #time-options {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Telefon yatay: kısa ekranda küçült */
+@media (max-height: 500px) and (orientation: landscape) {
+    #cat-gif {
+        width: 120px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    h1 {
+        animation: none;
+    }
+}
+
+/* Kahve / Yemek seçim kartlarındaki emoji ikon */
+.food-card .emoji-icon {
+    font-size: 56px;
+    line-height: 80px;
+    height: 80px;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 600px) {
+    .food-card .emoji-icon {
+        font-size: 44px;
+        line-height: 64px;
+        height: 64px;
+    }
+}
+
+#food-screen {
+    display: none;
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sana küçük bir sorum var ☕🍝</title>
+    <meta name="description" content="Sana küçük bir sorum var.">
+    <meta property="og:title" content="Sana küçük bir sorum var 👀">
+    <meta property="og:description" content="Cevaplaması 30 saniye sürer, söz.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h3>Ateş yaptı, senin için</h3>
+
+    <div class="container" id="proposal-screen">
+        <img src="https://media1.tenor.com/m/MKkJWYigjycAAAAd/cute-cat-cat-cute.gif" alt="Sevimli kedi" id="cat-gif">
+
+        <p class="eyebrow" id="greeting">Selam 👋</p>
+        <h1>Benimle kahve içmek ya da yemek yemek ister misin?</h1>
+        <p class="subtitle">Biraz sohbet, biraz kahve ya da güzel bir yemek. Kesin eğlenceli olur.</p>
+
+        <button id="yes-btn">Evet, isterim 😊</button>
+        <button id="no-btn">Hayır 🏃‍♀️</button>
+        <p class="hint" id="no-hint"></p>
+    </div>
+
+    <div class="container" id="detail-screen">
+        <p class="eyebrow" id="yay-text">Harika! 🎉</p>
+        <h2>Kahve mi, yemek mi?</h2>
+        <p class="subtitle">Sen seç, gerisi benden.</p>
+
+        <div class="food-options">
+            <button class="food-card plan-card" data-plan="kahve">
+                <div class="emoji-icon">☕</div>
+                <p>Kahve</p>
+            </button>
+
+            <button class="food-card plan-card" data-plan="yemek">
+                <div class="emoji-icon">🍝</div>
+                <p>Yemek</p>
+            </button>
+        </div>
+    </div>
+
+    <div class="container" id="food-screen">
+        <h2>Ne yiyelim?</h2>
+        <p class="subtitle">Menü senden.</p>
+
+        <div class="food-options">
+            <button class="food-card dish-card">
+                <img src="https://i.pinimg.com/736x/b9/f1/d6/b9f1d68b1357efdecaa83807ffefdae3.jpg" alt="Suşi">
+                <p>Suşi</p>
+            </button>
+
+            <button class="food-card dish-card">
+                <img src="https://static.vecteezy.com/system/resources/previews/009/955/768/non_2x/pixel-art-pizza-with-pepperoni-and-cheese-8bit-game-icon-on-white-background-vector.jpg" alt="Pizza">
+                <p>Pizza</p>
+            </button>
+
+            <button class="food-card dish-card">
+                <img src="https://static.vecteezy.com/system/resources/previews/009/877/912/non_2x/pixel-art-burger-and-soda-x-burger-fast-food-icon-for-8bit-game-on-white-background-vector.jpg" alt="Burger">
+                <p>Burger</p>
+            </button>
+
+            <button class="food-card dish-card">
+               <img src="https://i.pinimg.com/736x/2a/ae/8d/2aae8df1cf7c40283df15673358b6e49.jpg" alt="Makarna">
+               <p>Makarna</p>
+            </button>
+        </div>
+    </div>
+
+    <div class="container" id="calendar-screen">
+        <h2>Hangi gün? 📅</h2>
+
+        <div id="date-options" class="option-group"></div>
+
+        <h2>Saat kaçta? ⏰</h2>
+        <div id="time-options" class="option-group"></div>
+
+        <button id="confirm-btn" style="display: none;">Ateş'e gönder 💌</button>
+    </div>
+
+    <div class="container" id="done-screen">
+        <p class="eyebrow" id="done-eyebrow">Tamamdır ✨</p>
+        <h2>Görüşürüz!</h2>
+        <p class="subtitle" id="done-summary"></p>
+        <p class="hint">WhatsApp açılmadıysa <a id="wa-fallback" href="#">buraya dokun</a>.</p>
+    </div>
+
+<script src="script.js"></script>
+</body>
+</html>
